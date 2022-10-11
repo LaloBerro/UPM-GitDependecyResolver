@@ -20,7 +20,13 @@ namespace GitDependecyResolvers
 
         private void ResetDependencies()
         {
-            _dependencies = JsonUtility.FromJson<Dependencies>(_textAsset.text);
+            try
+            {
+                _dependencies = JsonUtility.FromJson<Dependencies>(_textAsset.text);
+            }
+            catch (System.Exception)
+            {
+            }
         }
 
         private void OnDisable()

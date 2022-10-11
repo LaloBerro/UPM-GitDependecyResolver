@@ -56,6 +56,8 @@ namespace GitDependecyResolvers
             await Task.Delay(TimeSpan.FromSeconds(1));
 
             EditorUtility.ClearProgressBar();
+
+            EditorApplication.update += ContinueWithNextDownload;
         }
 
         private static void ContinueWithNextDownload()
