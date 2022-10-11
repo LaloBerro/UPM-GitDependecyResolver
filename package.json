@@ -1,15 +1,13 @@
 {
   "name": "com.lalo.gitdependencyresolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Git Dependency Resolver",
-  "description": "",
   "unity": "2020.3",
   "unityRelease": "0b5",
   "documentationUrl": "",
   "changelogUrl": "",
   "licensesUrl": "",
-  "keywords": [
-  ],
+  "keywords": [],
   "author": {
     "name": "Lalo",
     "email": "",

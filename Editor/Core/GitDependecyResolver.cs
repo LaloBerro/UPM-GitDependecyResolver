@@ -27,6 +27,9 @@ namespace GitDependecyResolvers
         {
             foreach (var packageInfo in readOnlyCollection)
             {
+                if (packageInfo.source == PackageSource.Embedded)
+                    continue;
+
                 AddDependenciesFromPackage(packageInfo);
             }
         }
@@ -52,7 +55,7 @@ namespace GitDependecyResolvers
                 if (string.IsNullOrEmpty(dependency.gitUrl))
                     continue;
 
-                new PackageAdder().Add(dependency.gitUrl);
+                PackageAdder.Add(dependency.gitUrl);
             }
         }
     }
