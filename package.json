@@ -1,7 +1,7 @@
 {
-  "name": "com..",
+  "name": "com.lalo.gitdependencyresolver",
   "version": "1.0.0",
-  "displayName": "",
+  "displayName": "Git Dependency Resolver",
   "description": "",
   "unity": "2020.3",
   "unityRelease": "0b5",
@@ -11,18 +11,10 @@
   "keywords": [
   ],
   "author": {
-    "name": "",
+    "name": "Lalo",
     "email": "",
     "url": ""
   },
   "type": "tool",
-  "hideInEditor": false,
-  "samples": 
-[
-	{
-		"displayName": "Samples",
-		"description": "",
-		"path": "Samples~/"
-	}
-]
+  "hideInEditor": false
 }
