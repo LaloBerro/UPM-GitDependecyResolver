@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
@@ -14,16 +16,20 @@ namespace GitDependecyResolvers
 
         private static string _currentUrl;
 
+        private static bool _isProcessing;
+
         public static void Add(string url)
         {
             _urls.Enqueue(url);
 
-            if (null == _request || _request.IsCompleted)
+            if (!_isProcessing)
                 DownloadNextPackage();
         }
 
         private static void DownloadNextPackage()
         {
+            _isProcessing = true;
+
             _currentUrl = _urls.Dequeue();
 
             _request = Client.Add(_currentUrl);
@@ -31,7 +37,7 @@ namespace GitDependecyResolvers
             EditorApplication.update += Progress;
         }
 
-        private static void Progress()
+        private static async void Progress()
         {
             EditorUtility.DisplayProgressBar("Download Package", "Downloading: " + _currentUrl, 0.5f);
 
@@ -45,10 +51,22 @@ namespace GitDependecyResolvers
 
             EditorApplication.update -= Progress;
 
-            if (_urls.Count > 0)
-                DownloadNextPackage();
+            await Task.Delay(TimeSpan.FromSeconds(1));
 
             EditorUtility.ClearProgressBar();
+        }
+
+        private static void ContinueWithNextDownload()
+        {
+            if (EditorApplication.isCompiling)
+                return;
+
+            if (_urls.Count > 0)
+                DownloadNextPackage();
+            else
+                _isProcessing = false;
+
+            EditorApplication.update -= ContinueWithNextDownload;
         }
     }
 }
