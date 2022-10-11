@@ -49,6 +49,8 @@ namespace GitDependecyResolvers
             else if (_request.Status >= StatusCode.Failure)
                 Debug.Log(_request.Error.message);
 
+            AssetDatabase.Refresh();
+
             EditorApplication.update -= Progress;
 
             await Task.Delay(TimeSpan.FromSeconds(1));
