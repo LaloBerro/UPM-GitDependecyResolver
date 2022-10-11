@@ -1,5 +1,5 @@
 {
-    "name": "Runtime",
+    "name": "Editor.GitDependencyResolver",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
