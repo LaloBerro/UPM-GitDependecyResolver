@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.PackageManager;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
@@ -55,8 +57,20 @@ namespace GitDependecyResolvers
                 if (string.IsNullOrEmpty(dependency.gitUrl))
                     continue;
 
+                if (IsPackageInstalled(dependency.gitUrl))
+                    continue;
+
                 PackageAdder.Add(dependency.gitUrl);
             }
+        }
+
+        public static bool IsPackageInstalled(string packageId)
+        {
+            if (!File.Exists("Packages/manifest.json"))
+                return false;
+
+            string jsonText = File.ReadAllText("Packages/manifest.json");
+            return jsonText.Contains(packageId);
         }
     }
 }
