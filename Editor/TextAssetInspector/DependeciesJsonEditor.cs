@@ -66,8 +66,18 @@ namespace GitDependecyResolvers
                 GUILayout.BeginVertical("Box");
 
                 GUILayout.Label(dependency.name);
-                GUILayout.TextArea(dependency.gitUrl);
 
+                GUILayout.BeginHorizontal("Box");
+
+                if (GUILayout.Button(EditorGUIUtility.IconContent("Clipboard"), GUILayout.Width(20), GUILayout.Height(20)))
+                {
+                    Debug.Log("Copied to Clipboard:  " + dependency.gitUrl);
+                    EditorGUIUtility.systemCopyBuffer = dependency.gitUrl;
+                }
+
+                GUILayout.Label(dependency.gitUrl);
+
+                GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
 
@@ -128,6 +138,8 @@ namespace GitDependecyResolvers
             string directoryPath = AssetDatabase.GetAssetPath(Selection.activeObject);
 
             File.WriteAllText(directoryPath, json);
+
+            AssetDatabase.Refresh();
         }
     }
 }
