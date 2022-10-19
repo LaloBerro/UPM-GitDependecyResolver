@@ -39,7 +39,7 @@ namespace GitDependecyResolvers
 
         private static async void Progress()
         {
-            EditorUtility.DisplayProgressBar("Download Package", "Downloading: " + _currentUrl, 0.5f);
+            EditorUtility.DisplayProgressBar("Resolving Git Dependency", "Downloading: " + _currentUrl, 0.5f);
 
             if (!_request.IsCompleted)
                 return;
