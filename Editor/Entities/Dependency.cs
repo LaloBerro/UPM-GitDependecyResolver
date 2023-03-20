@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 namespace GitDependecyResolvers
 {
     [System.Serializable]
@@ -7,3 +8,4 @@ namespace GitDependecyResolvers
         public string gitUrl;
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 
 namespace GitDependecyResolvers
@@ -8,3 +9,4 @@ namespace GitDependecyResolvers
         public List<Dependency> dependencies;
     }
 }
+#endif
